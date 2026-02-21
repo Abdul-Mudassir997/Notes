@@ -1,22 +1,47 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=Edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-
-  <title>HTML</title>
   
-  <!-- HTML -->
+  <title>Notes Manager</title>
   
-
-  <!-- Custom Styles -->
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet">
+  
   <link rel="stylesheet" href="style.css">
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#000000">
 </head>
 
 <body>
-  <p>Nothing to see here...</p>
-  <!-- Project -->
+  <div class="bg_holder">
+  </div>
+  <div class="background_page">
+    <div class="list_container">
+      <section class="list">
+      </section>
+    </div>
+    <div class="toolbar_holder">
+      <div class="toolbar">
+        <img src="dp.jpg" alt="DP" class="dp">
+        <span class="material-symbols-outlined home_more">
+          more_vert
+        </span>
+      </div>
+      <div class="nav_btns">
+        <button class="toggles notesbtn">Notes</button>
+        <button class="toggles todosbtn">Todos</button>
+      </div>
+    </div>
+    <header>
+        <div class="create_icon" id="create_icon">Create Note</div>
+    </header>
+  </div>
   <script src="main.js"></script>
+  <!--<script src="todo.js"></script>-->
+  <script src="register-sw.js"></script>
 </body>
+
 </html>
