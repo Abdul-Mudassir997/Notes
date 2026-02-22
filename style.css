@@ -14,7 +14,7 @@ body {
 	padding: 0px;
 	color: #FFFFFF;
 	background-color: black;
-	background-image: url("/bg.png");
+	background-image: url("bg.png");
 	background-size: cover;
 	background-attachment: fixed;
 }
