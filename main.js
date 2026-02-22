@@ -244,4 +244,4 @@ text_name2.textContent = 'color1';
 text_name2.className = 'bg_name'
 btn_text_changer2.appendChild(text_name2)
 btn_text_changer2.appendChild(text_option2)
-menu.appendChild(btn_text_changer2)}
+menu.appendChild(btn_text_changer2)
