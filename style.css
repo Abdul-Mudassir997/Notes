@@ -4,17 +4,17 @@
 	--animate1: animate1 1s ease 0s alternate both running;
 	--animate2: animate2 10ms ease 0s alternate both running;
 	--background: rgba(255, 255, 255, 0.18);
+	--color:#000000;
 }
-
 
 body {
 	font-size: 15pt;
 	font-family: "Roboto Slab", serif;
 	margin: 0px;
 	padding: 0px;
-	color: #FFFFFF;
+	color: var(--color);
 	background-color: black;
-	background-image: url("bg.png");
+	background-image: url("bg1.jpg");
 	background-size: cover;
 	background-attachment: fixed;
 }
@@ -58,7 +58,7 @@ body {
 	font-weight: bold;
 	margin: 4px 0px;
 	padding: 7px 7px;
-	color: white;
+	color: var(--color);
 	border: 1px solid rgba(255, 255, 255, 0.2);
 	border-radius: 4px;
 	background-color: rgba(255, 255, 255, 0.2);
@@ -69,12 +69,41 @@ body {
 
 .home_more {
 	margin: 10px;
+	right: 1px;
+}
+.menu{
+	padding: 10px;
+	margin: 10px;
+	margin-top: 0px;
+	border-radius: 13px;
+	transition: all 0.12s;
+	display: flex;
+	flex-direction: column;
+	position: fixed;
+	right: 0px;
+	top: 40px;
+	transform: scale(0%);
+	transform-origin: top right;
+	background-color: #FFFFFF;
+}
+.menu.show{
+	transform: scale(100%) translateY(-30px);
+}
+.btn_bg_changer{
+	border-top: 1px solid #333333;
+	display: flex;
+	flex-direction: row-reverse;
+	align-items: center;
+	padding: 10px;
+}
+.bg_name{
+	color: #000000;
 }
 
 .dp{
   height: 42px;
   width: 42px;
-  border: 2px solid white;
+  border: 2px solid var(--color);
   border-radius: 50px;
   margin: 10px;
 }
@@ -84,8 +113,8 @@ body {
 	animation: var(--animate1);
 	font-size: 20px;
 	font-weight: bold;
-	color: #FFFFFF;
-	padding: 10px;
+	color: var(--color);
+	padding: 15px;
 	position: fixed;
 	bottom: 10px;
 	right: 10px;
@@ -93,12 +122,12 @@ body {
 	align-items: center;
 	justify-content: center;
 	border-radius: 14px;
-	border-top: 2px solid rgba(255, 255, 255, 0.3);
-	border-left: 2px solid rgba(255, 255, 255, 0.3);
-	box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.5);
+	border-top: 1px solid rgba(255, 255, 255, 0.4);
+	border-left: 1px solid rgba(255, 255, 255, 0.4);
+	box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
 	background: rgba(255, 255, 255, 0.18);
-	backdrop-filter: blur(18px);
-	-webkit-backdrop-filter: blur(18px);
+	backdrop-filter: blur(18px) saturate(160%);
+	-webkit-backdrop-filter: blur(18px) saturate(160%);
 }
 
 .bg_holder {
@@ -128,8 +157,8 @@ body {
 	background: transparent;
 	display: flex;
 	align-items: center;
-	backdrop-filter: blur(18px);
-	-webkit-backdrop-filter: blur(18px);
+	backdrop-filter: blur(18px) saturate(160%);
+	-webkit-backdrop-filter: blur(18px) saturate(160%);
 }
 
 .list_container {
@@ -154,7 +183,7 @@ body {
 
 .note_title {
 	font-size: 28px;
-	color: #FFFFFF;
+	color: var(--color);
 	background-color: #FAF3E100;
 	margin-bottom: 10px;
 	outline: none;
@@ -164,14 +193,14 @@ body {
 	font-family: "Roboto Slab", serif;
 }
 .note_title::placeholder {
-	color: #FFFFFF;
+	color: var(--color);
 }
 
 .note_text {
 	font-size: 16px;
 	font-family: "Roboto Slab", serif;
 	line-height: 18px;
-	color: #FFFFFF;
+	color: var(--color);
 	background-color: #FFFFFF00;
 	outline: none;
 	border: none;
@@ -179,12 +208,12 @@ body {
 	height: 100%;
 }
 .note_text::placeholder {
-	color: #FFFFFF;
+	color: var(--color);
 }
 
 .check_icon {
 	font-size: 27px;
-	color: #FFFFFF;
+	color: var(--color);
 	margin: 10px;
 }
 
@@ -232,10 +261,12 @@ body {
 	padding: 10px;
 	display: flex;
 	border: 1px solid rgba(255, 255, 255, 0.26);
+	border-top: 2px solid rgba(255, 255, 255, 0.26);
+	border-left: 2px solid rgba(255, 255, 255, 0.26);
 	border-radius: 16px;
 	flex-direction: column;
 	background: rgba(255, 255, 255, 0.2);
-	backdrop-filter: blur(14px) saturate(120%);
+	backdrop-filter: blur(14px) saturate(190%);
 	-webkit-backdrop-filter: blur(14px) saturate(120%);
 	height: auto;
 	width: 98%;
