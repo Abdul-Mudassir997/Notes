@@ -1,23 +1,28 @@
-const CACHE_NAME = "notes-app-v1.4"; // version change karna mat bhoolna
+const CACHE_NAME = "notes-app-v1.6";
 
 const STATIC_ASSETS = [
   "./",
   "./index.html",
   "./style.css",
-  "./app.js",
-  "./offline.html"
+  "./main.js",
+  "./register-sw.js",
+  "./offline.html",
+  "./manifest.json",
+  "./dp.jpg",
+  "./bg1.jpg",
+  "./bg2.jpg",
+  "./bg3.jpg",
+  "./bg.png"
 ];
 
 
 // ================= INSTALL =================
 self.addEventListener("install", event => {
-  self.skipWaiting(); // immediately activate hone ke liye
-  
+  self.skipWaiting();
+
   event.waitUntil(
     caches.open(CACHE_NAME)
-    .then(cache => {
-      return cache.addAll(STATIC_ASSETS);
-    })
+      .then(cache => cache.addAll(STATIC_ASSETS))
   );
 });
 
@@ -29,39 +34,52 @@ self.addEventListener("activate", event => {
       return Promise.all(
         cacheNames.map(cache => {
           if (cache !== CACHE_NAME) {
-            return caches.delete(cache); // old cache delete
+            return caches.delete(cache);
           }
         })
       );
     })
   );
-  
-  self.clients.claim(); // control immediately lelo
+
+  self.clients.claim();
 });
 
 
 // ================= FETCH =================
 self.addEventListener("fetch", event => {
-  
-  // HTML pages ke liye Network First
+
+  // 🔹 HTML → Network First
   if (event.request.mode === "navigate") {
     event.respondWith(
       fetch(event.request)
-      .then(response => {
-        return response;
-      })
-      .catch(() => {
-        return caches.match("./offline.html");
-      })
+        .then(response => response)
+        .catch(() => caches.match("./offline.html"))
     );
     return;
   }
-  
-  // Static files ke liye Cache First
+
+  // 🔹 JS & CSS → Network First (Update Safe)
+  if (
+    event.request.destination === "script" ||
+    event.request.destination === "style"
+  ) {
+    event.respondWith(
+      fetch(event.request)
+        .then(response => {
+          const copy = response.clone();
+          caches.open(CACHE_NAME).then(cache => {
+            cache.put(event.request, copy);
+          });
+          return response;
+        })
+        .catch(() => caches.match(event.request))
+    );
+    return;
+  }
+
+  // 🔹 Images & Other Assets → Cache First
   event.respondWith(
     caches.match(event.request)
-    .then(cachedResponse => {
-      return cachedResponse || fetch(event.request);
-    })
+      .then(cached => cached || fetch(event.request))
   );
 });
