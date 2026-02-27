@@ -1,4 +1,4 @@
-const CACHE_NAME = "notes-app-v1.3"; // version change karna mat bhoolna
+const CACHE_NAME = "notes-app-v1.4"; // version change karna mat bhoolna
 
 const STATIC_ASSETS = [
   "./",
