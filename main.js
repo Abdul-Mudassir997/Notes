@@ -1,5 +1,3 @@
-let notes = []
-let undo_redo = []
 let background_images = ['bg1.jpg', 'bg2.jpg', 'bg3.jpg', 'bg.png'];
 const list = document.querySelector('.list')
 const todobtn = document.querySelector('.todosbtn')
@@ -23,6 +21,7 @@ function reload_notes() {
   const notebtn = document.querySelector('.notesbtn')
   todobtn.style.border = '1px solid white';
   notebtn.style.border = '3px solid white';
+  notes=JSON.parse(localStorage.getItem('notes'))
   notes.forEach(note => {
     let title = note.title
     let text = note.text
@@ -31,6 +30,7 @@ function reload_notes() {
   })
 }
 reload_notes()
+
 //function for adding an specific note
 function add_to_list(title, text, uid) {
   const item = document.createElement("div");
@@ -53,13 +53,16 @@ function add_to_list(title, text, uid) {
   textDiv.textContent = `${(text||"").slice(0,450)}...`;
   
   const n_delete_btn = document.createElement('span')
-  n_delete_btn.className = 'material-symbols-outlined note_delete'
+  n_delete_btn.classList.add('material-symbols-outlined')
+  n_delete_btn.classList.add('note_delete')
   n_delete_btn.textContent = 'delete'
   n_delete_btn.addEventListener('click', (e) => {
     e.stopPropagation()
     let delete_note = confirm('Do you want to delete this note.')
     if (delete_note) {
+      notes=JSON.parse(localStorage.getItem('notes'))
       notes = notes.filter(note => note.uid !== uid)
+      localStorage.setItem('notes',JSON.stringify(notes))
       reload_notes()
     }
   })
@@ -96,6 +99,13 @@ const checkbtn = document.createElement('span')
 checkbtn.textContent = "arrow_back"
 checkbtn.classList = 'check_icon material-symbols-outlined'
 checkbtn.addEventListener('click', () => {
+  let notes=localStorage.getItem('notes')
+  if (notes) {
+    notes=JSON.parse(notes)
+  }
+  else {
+    notes=[]
+  }
   if (ntitle.value.trim() || ntext.value.trim()) {
     let note = notes.find(note => note.uid === current_uid)
     if (note) {
@@ -112,6 +122,7 @@ checkbtn.addEventListener('click', () => {
         uid: Date.now().toString(36) + Math.random().toString(36),
       }
       notes.push(note)
+      localStorage.setItem('notes',`${JSON.stringify(notes)}`)
       reload_notes()
       custom_alert("Note Saved successfully.")
     }
@@ -168,8 +179,6 @@ notebtn.addEventListener('click', () => {
 
 todobtn.addEventListener('click', () => {
   custom_alert('feature not available.')
-  //todobtn.style.border='3px solid white';
-  // notebtn.style.border='1px solid white';
 })
 
 
