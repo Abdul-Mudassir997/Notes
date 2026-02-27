@@ -21,7 +21,7 @@ function reload_notes() {
   const notebtn = document.querySelector('.notesbtn')
   todobtn.style.border = '1px solid white';
   notebtn.style.border = '3px solid white';
-  notes=JSON.parse(localStorage.getItem('notes'))
+  notes=JSON.parse(localStorage.getItem('notes')) || [];
   notes.forEach(note => {
     let title = note.title
     let text = note.text
